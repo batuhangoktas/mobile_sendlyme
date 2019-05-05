@@ -1,0 +1,18 @@
+{
+	"MainPageJoin": "Katıl",
+	"MainPageStart": "Başlat",
+	"FileSelect": "Dosya Seç",
+	"PairingFailed": "Eşleşme yapılamadı.",
+	"FileSizeLimit": "Dosya boyutu 100 mb dan küçük olmalıdır",
+	"Failed": "Başarısız",
+	"ServiceConnectionFailed": "Servise erişimde Hata",
+	"Sent": "Gönderildi",
+	"Problem": "Hata oluştu",
+	"Send": "Gönder",
+	"Download": "İndir",
+	"Show": "Göster",
+	"SendReceive": "Gönder/Al",
+	"RemoveItemMessage": "Bu öğeyi kaldırmak istiyor musunuz?",
+	"Yes": "Evet",
+	"No": "Hayır"
+}

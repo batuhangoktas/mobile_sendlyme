@@ -1,0 +1,19 @@
+{
+	"MainPageJoin": "Join",
+	"MainPageStart": "Start",
+	"FileSelect": "File Select",
+	"PairingFailed": "Pairing Failed.",
+	"FileSizeLimit": "The file must be less than 100 mb",
+	"Failed": "Failed",
+	"ServiceConnectionFailed": "Service connection failed",
+	"Sent": "Sent",
+	"Problem": "Error occured",
+	"Send": "Send",
+	"Download": "Download",
+	"Show": "Show",
+	"SendReceive": "Send/Receive",
+	"RemoveItemMessage": "Do you want to remove this item?",
+	"Yes": "Yes",
+	"No": "No"
+
+}
