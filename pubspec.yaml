@@ -19,6 +19,8 @@ dependencies:
   open_file: ^2.0.1+2
   flutter_localizations:
     sdk: flutter
+  url_launcher: ^4.2.0+3
+  get_ip: ^0.3.0
 
 dev_dependencies:
   flutter_test:

@@ -14,6 +14,11 @@
 	"SendReceive": "Send/Receive",
 	"RemoveItemMessage": "Do you want to remove this item?",
 	"Yes": "Yes",
-	"No": "No"
+	"No": "No",
+	"Agree": "By continuing, you agree to our",
+	"LegalInfo": "Legal Information",
+	"And": "and",
+	"Privacy": "Privacy Police"
+
 
 }

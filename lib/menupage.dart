@@ -6,6 +6,8 @@ import 'package:sendlyme/service/joinservice.dart';
 import 'package:sendlyme/startpage.dart';
 import 'package:sendlyme/sendreceivepage.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:get_ip/get_ip.dart';
 
 class MenuPage extends StatefulWidget{
   @override
@@ -30,7 +32,7 @@ class MenuPageApp extends State<MenuPage>
     return new Scaffold(
         key: mScaffoldState,
         appBar: AppBar(
-          title: Text('SendlyMe'),
+          title: Text('Sendly.me'),
         ),
         body: ModalProgressHUD(opacity: 0.2,inAsyncCall: this._saving  ,
         child: new Container(
@@ -48,10 +50,10 @@ class MenuPageApp extends State<MenuPage>
 
     new Container(
     width: MediaQuery.of(context).size.width-100,
-       height: 65.0,
+       height: 70.0,
       alignment: Alignment.center,
 margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
-      child: new Text("Sendly.me",style: TextStyle(color: Color(0xFF2A5094), fontSize: 55,fontWeight: FontWeight.bold, fontFamily: 'IceBerg'),),
+      child: new Text("Sendly.me",style: TextStyle(color: Color(0xFF2A5094), fontSize: 50,fontWeight: FontWeight.bold, fontFamily: 'IceBerg'),),
      ),
         
        new Container(
@@ -145,6 +147,42 @@ margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
 
         ),
        ),
+    new Container(
+      margin: EdgeInsets.only(top: 10.0),
+      height: 20.0,
+      alignment: Alignment.center,
+      child: new Text( Translations.of(context).text('Agree'),style: TextStyle(color: Color(0xFF2A5094), fontSize: 15,fontWeight: FontWeight.bold, fontFamily: 'IceBerg'),),
+    ),
+    new Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        new Container(
+          height: 20.0,
+          alignment: Alignment.center,
+          child:
+          new InkWell(
+            child: new Text(Translations.of(context).text('LegalInfo'),style: TextStyle(color: Color(0xFF2A5094),decoration: TextDecoration.underline, fontSize: 15,fontWeight: FontWeight.bold, fontFamily: 'IceBerg'),),
+            onTap: () => launch('https://sendly.me/#/legalinfo')
+        ),
+
+
+        ),
+        new Container(
+          height: 20.0,
+          alignment: Alignment.center,
+          child: new Text(Translations.of(context).text('And'),style: TextStyle(color: Color(0xFF2A5094), fontSize: 15,fontWeight: FontWeight.bold, fontFamily: 'IceBerg'),),
+        ),
+        new Container(
+          height: 20.0,
+          alignment: Alignment.center,
+          child:
+          new InkWell(
+            child: new Text(Translations.of(context).text('Privacy'),style: TextStyle(color: Color(0xFF2A5094),decoration: TextDecoration.underline, fontSize: 15,fontWeight: FontWeight.bold, fontFamily: 'IceBerg'),),
+              onTap: () => launch('https://sendly.me/#/privacy')
+          )
+        ),
+      ],
+    )
 
 
 //     new GestureDetector(
@@ -187,11 +225,13 @@ margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
   }
   Future scan() async {
     try {
+
       this.sessionId = await BarcodeScanner.scan();
+      String ipAddress = await GetIp.ipAddress;
 
       progressDialog(true);
       //servis işlemi
-      JoinService.post("132.123.123.125", sessionId, getJoinCallback);
+      JoinService.post(ipAddress, sessionId, getJoinCallback);
 
 
 
@@ -211,10 +251,10 @@ margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
       }
     } on FormatException{
   //    setState(() => this.barcode = 'null (User returned using the "back"-button before scanning anything. Result)');
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => SendReceiveApp()),
-      );
+//      Navigator.push(
+//        context,
+//        MaterialPageRoute(builder: (context) => SendReceiveApp()),
+//      );
     } catch (e) {
   //    setState(() => this.barcode = 'Unknown error: $e');
     }

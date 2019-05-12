@@ -14,5 +14,9 @@
 	"SendReceive": "Gönder/Al",
 	"RemoveItemMessage": "Bu öğeyi kaldırmak istiyor musunuz?",
 	"Yes": "Evet",
-	"No": "Hayır"
+	"No": "Hayır",
+	"Agree": "Bunları okudum ve kabul ediyorum",
+	"LegalInfo": "Yasal Bilgiler",
+	"And": " ve ",
+	"Privacy": "Gizlilik Politikası"
 }
