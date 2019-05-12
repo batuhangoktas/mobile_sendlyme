@@ -7,7 +7,6 @@ import 'package:sendlyme/startpage.dart';
 import 'package:sendlyme/sendreceivepage.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:get_ip/get_ip.dart';
 
 class MenuPage extends StatefulWidget{
   @override
@@ -227,11 +226,10 @@ margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
     try {
 
       this.sessionId = await BarcodeScanner.scan();
-      String ipAddress = await GetIp.ipAddress;
 
       progressDialog(true);
       //servis işlemi
-      JoinService.post(ipAddress, sessionId, getJoinCallback);
+      JoinService.post("ip", sessionId, getJoinCallback);
 
 
 

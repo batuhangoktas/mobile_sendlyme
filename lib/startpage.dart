@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:get_ip/get_ip.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:sendlyme/constants/MessagesString.dart';
 import 'package:sendlyme/sendreceivepage.dart';
@@ -25,7 +24,7 @@ class StartPage extends State<StartPageApp> {
   void initState() {
     super.initState();
     getBrightness();
-
+    StartService.postStartInfo("ip",getQrCallback);
   }
 
   @override
@@ -38,12 +37,6 @@ class StartPage extends State<StartPageApp> {
   async {
     currentBrightness = await Screen.brightness;
     Screen.setBrightness(1);
-  }
-
-  getStartInfo()
-  async {
-    String ipAddress = await GetIp.ipAddress;
-    StartService.postStartInfo(ipAddress,getQrCallback);
   }
 
   getQrCallback(String sessionId,String userId,bool status) {
