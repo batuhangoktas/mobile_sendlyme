@@ -229,7 +229,7 @@ margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
 
       progressDialog(true);
       //servis işlemi
-      JoinService.post("ip", sessionId, getJoinCallback);
+      JoinService.post(sessionId, getJoinCallback);
 
 
 

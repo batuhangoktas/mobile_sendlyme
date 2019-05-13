@@ -7,11 +7,14 @@ import 'package:sendlyme/sendreceivepage.dart';
 import 'package:sendlyme/service/matchingservice.dart';
 import 'package:sendlyme/service/startservice.dart';
 import 'package:screen/screen.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
   class StartPageApp extends StatefulWidget {
   @override
   StartPage createState() => new StartPage();
   }
+
+
 
 class StartPage extends State<StartPageApp> {
 
@@ -24,7 +27,7 @@ class StartPage extends State<StartPageApp> {
   void initState() {
     super.initState();
     getBrightness();
-    StartService.postStartInfo("ip",getQrCallback);
+    StartService.postStartInfo(getQrCallback);
   }
 
   @override
@@ -48,7 +51,7 @@ class StartPage extends State<StartPageApp> {
       });
 
 
-      timer = Timer.periodic(Duration(seconds: 2), (Timer t) => MatchingService.postStartInfo("123.123.123.123",this.sessionId,getMatchCallback));
+      timer = Timer.periodic(Duration(seconds: 2), (Timer t) => MatchingService.postStartInfo(this.sessionId,getMatchCallback));
     }
     else
       {
@@ -91,12 +94,13 @@ class StartPage extends State<StartPageApp> {
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.all(20),
         color: new Color(0xFFBFE0F3),
-        child:
-        new Center (child: new QrImage(
+        child:  ModalProgressHUD(opacity: 0.4,inAsyncCall: this.sessionId.isEmpty,child:   new Center (child: new QrImage(
           data: sessionId,
         ),
         )
+          ,  )
       )
     );
   }
+
 }

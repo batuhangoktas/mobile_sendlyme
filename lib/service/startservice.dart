@@ -8,11 +8,11 @@ import 'package:sendlyme/modal/posthttp.dart';
 import 'package:sendlyme/service/getconstants.dart';
 class StartService
 {
-  StartService.postStartInfo(String ip, Function(String,String,bool) callBack){
+  StartService.postStartInfo(Function(String,String,bool) callBack){
 
     var url = GetConstants.getCreateSessionService();
 
-    http.post(url,body: {'ip':ip})
+    http.post(url,)
         .then((response) {
       print("Response status: ${response.statusCode}");
 

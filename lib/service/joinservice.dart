@@ -6,10 +6,10 @@ import 'package:sendlyme/modal/posthttp.dart';
 import 'package:sendlyme/service/getconstants.dart';
 class JoinService
 {
-  JoinService.post(String ip,String sessionId, Function(String,bool) callBack){
+  JoinService.post(String sessionId, Function(String,bool) callBack){
 
     var url = GetConstants.getJoinSessionService();
-    http.post(url, body: {'ip':ip, 'sessionid':sessionId} )
+    http.post(url, body: {'sessionid':sessionId} )
         .then((response) {
       print("Response status: ${response.statusCode}");
 
