@@ -277,7 +277,9 @@ margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
     }
     else
     {
-
+      progressDialog(false);
+      final snackBar = new SnackBar(content: new Text( Translations.of(context).text('PairingFailed')));
+      mScaffoldState.currentState.showSnackBar(snackBar);
     }
   }
 

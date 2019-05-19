@@ -225,16 +225,25 @@ color: new Color(0xFFBFE0F3),
 //          var dataResponse = json.decode("{\"status\":true,\"data\":[{\"id\":\"f37d1f19-75d7-4834-a5fd-7312d014ae7d\",\"name\":\"Screenshot_2018-11-15-23-35-24.png\",\"status\":\"0\"}]}");
 
 
-          resultHttp.data.forEach((data)
-          {
-            String fileId = data['id'];
-            String fileName = data['name'];
-            String fileStatus = data['status'];
-            receiveFileList.add(new ReceiveFileModal(++receiveCnt,fileId,fileName,fileStatus ));
+          if(resultHttp.timestatus== false) {
+            _scaffoldKey.currentState.showSnackBar(new SnackBar(
+              content: new Text(Translations.of(context).text('SessionTime')),
+              duration: Duration(milliseconds: 3000),
+            ));
+            Navigator.pop(context);
+          }
+          else {
 
-          });
+              resultHttp.data.forEach((data) {
+              String fileId = data['id'];
+              String fileName = data['name'];
+              String fileStatus = data['status'];
+              receiveFileList.add(new ReceiveFileModal(
+                  ++receiveCnt, fileId, fileName, fileStatus));
+            });
 
-          setState(() => this.receiveFileList = receiveFileList);
+            setState(() => this.receiveFileList = receiveFileList);
+          }
         }
         else
         {

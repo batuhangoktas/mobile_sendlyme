@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:sendlyme/constants/MessagesString.dart';
+import 'package:sendlyme/localizationlib/translations.dart';
 import 'package:sendlyme/sendreceivepage.dart';
 import 'package:sendlyme/service/matchingservice.dart';
 import 'package:sendlyme/service/startservice.dart';
@@ -20,22 +21,30 @@ class StartPage extends State<StartPageApp> {
 
   String userId="";
   String sessionId="";
-  Timer timer;
+  Timer timer,timerQr;
   double currentBrightness=0.0;
   final GlobalKey<ScaffoldState> mScaffoldState = new GlobalKey<ScaffoldState>();
+  bool _progress = false;
   @override
   void initState() {
     super.initState();
-    getBrightness();
+  //  getBrightness();
     StartService.postStartInfo(getQrCallback);
   }
 
   @override
   void dispose() {
-    Screen.setBrightness(currentBrightness);
+   // Screen.setBrightness(currentBrightness);
     super.dispose();
   }
 
+
+  void progressDialog()
+  {
+    setState(() {
+      this.sessionId = this.sessionId;
+    });
+  }
   getBrightness()
   async {
     currentBrightness = await Screen.brightness;
@@ -45,17 +54,31 @@ class StartPage extends State<StartPageApp> {
   getQrCallback(String sessionId,String userId,bool status) {
     if(status)
     {
+      if(timer!=null)
+      timer.cancel();
+
       this.userId = userId;
       setState(() {
         this.sessionId=sessionId;
       });
 
+      if(timerQr==null) {
+        timerQr = Timer.periodic(Duration(seconds: 15), (Timer t) =>
+        {
+        setState(() {
+        this.sessionId="";
+        }),
+        new Timer(const Duration(milliseconds: 1500), () {
+        StartService.postStartInfo(getQrCallback);
+        })
 
+      });
+      }
       timer = Timer.periodic(Duration(seconds: 2), (Timer t) => MatchingService.postStartInfo(this.sessionId,getMatchCallback));
     }
     else
       {
-        final snackBar = new SnackBar(content: new Text("Eşleşme yapılamadı."));
+        final snackBar = new SnackBar(content: new Text( Translations.of(context).text('PairingFailed')));
         mScaffoldState.currentState.showSnackBar(new SnackBar(
             content: new Text(MessagesString().serverProblem))
         );
@@ -66,6 +89,7 @@ class StartPage extends State<StartPageApp> {
     if(status)
     {
       if(match) {
+        timerQr.cancel();
         timer?.cancel();
         Navigator.pop(context);
         Navigator.push(
@@ -94,7 +118,7 @@ class StartPage extends State<StartPageApp> {
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.all(20),
         color: new Color(0xFFBFE0F3),
-        child:  ModalProgressHUD(opacity: 0.4,inAsyncCall: this.sessionId.isEmpty,child:   new Center (child: new QrImage(
+        child:  ModalProgressHUD(opacity: 0.6,inAsyncCall: this.sessionId.isEmpty,child:   new Center (child: new QrImage(
           data: sessionId,
         ),
         )
