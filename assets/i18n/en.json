@@ -19,5 +19,6 @@
 	"LegalInfo": "Legal Information",
 	"And": "and",
 	"Privacy": "Privacy Police",
-	"SessionTime": "Your session has expired"
+	"SessionTime": "Your session has expired",
+	"AllSend": "Send All"
 }

@@ -31,7 +31,9 @@ class SendReceive extends State<SendReceiveApp> {
   Timer timer;
   String _platformVersion;
   bool _saving = false;
+  bool multiFileSizeCheckWrong = false;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool sendAllVisibility=false;
   @override
   initState() {
     super.initState();
@@ -104,11 +106,33 @@ color: new Color(0xFFBFE0F3),
                     ),
         new Container(
           margin:EdgeInsets.only(top: 5),
-          height: MediaQuery.of(context).size.height-215 ,
+          height: MediaQuery.of(context).size.height-265 ,
           width:MediaQuery.of(context).size.width,
                     child: new SendFileList(widget.userId,widget.sessionId,getFileList(),refreshSendList,progressDialog,removeSendList),
         ),
+          Visibility(
+              visible: sendAllVisibility,
+              child: new Container(
+            margin:EdgeInsets.only(left: 25,right: 25),
+            width:MediaQuery.of(context).size.width,
+            height: 45,
 
+                    child: RaisedButton(
+                      elevation: 4.0,
+                      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                      color: new Color(0xFF254C91),
+                      onPressed: sendAll,
+                      child: Text(
+                        Translations.of(context).text('AllSend'),
+                        style: new TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontFamily: 'PTSerif'
+                        ),
+                      ),
+                    ),
+          )
+          )
                   ],
                 ),
                 ),
@@ -157,31 +181,61 @@ color: new Color(0xFFBFE0F3),
     return receiveFileList;
   }
 
+  void multiFileCheck(key, value) {
+    if (value == '') {
+      return;
+    }
+    int fSize = File(value).lengthSync();
+    if (((fSize/1024)/1024) > 100) {
+      multiFileSizeCheckWrong = true;
+    }
+
+  }
+  void fileAddList(key,value)
+  {
+    print("File path: " + value);
+    int cntLocation = value.lastIndexOf("/");
+    String fileName = value.substring(cntLocation + 1, value.length);
+    sendFileList.add(SendFileModal(
+        fileName: fileName, orderNo: cnt++, fileWay: value));
+    setState(() => this.sendFileList = sendFileList);
+    var notSendCnt = 0;
+    for(SendFileModal fileModal in this.sendFileList)
+    {
+      if(fileModal.status!="1")
+      notSendCnt++;
+    }
+    if(notSendCnt>1)
+      setState(() { sendAllVisibility = true; });
+    else
+      setState(() { sendAllVisibility = false; });
+  }
   void getFilePath() async {
     try {
-      String filePath = await FilePicker.getFilePath(type: FileType.ANY);
-      if (filePath == '') {
-        return;
+      Map<String,String> multiFileList = await FilePicker.getMultiFilePath(type: FileType.ANY);
+      multiFileList.forEach(multiFileCheck);
+
+     if(!multiFileSizeCheckWrong)
+       {
+        multiFileList.forEach(fileAddList);
       }
-      int fSize = File(filePath).lengthSync();
-      if (((fSize/1024)/1024) > 100) {
-       _scaffoldKey.currentState.showSnackBar(new SnackBar(
-          content: new Text( Translations.of(context).text('FileSizeLimit')),
-        duration: Duration(milliseconds: 1500),));
-      }
-      else {
-        print("File path: " + filePath);
-        int cntLocation = filePath.lastIndexOf("/");
-        String fileName = filePath.substring(cntLocation + 1, filePath.length);
-        sendFileList.add(SendFileModal(
-            fileName: fileName, orderNo: cnt++, fileWay: filePath));
-        setState(() => this.sendFileList = sendFileList);
-      }
+     else
+       {
+           _scaffoldKey.currentState.showSnackBar(new SnackBar(
+             content: new Text( Translations.of(context).text('FileSizeLimit')),
+             duration: Duration(milliseconds: 1500),));
+       }
     } catch (e) {
       print("Error while picking the file: " + e.toString());
     }
   }
 
+  void sendAll() async {
+
+    List<SendFileModal> fileList = getFileList();
+    sendFile(fileList,0);
+
+  }
 
   void refreshList(int)
   {
@@ -193,12 +247,32 @@ color: new Color(0xFFBFE0F3),
   {
     this.sendFileList[int].status = "1";
     setState(() => this.sendFileList = sendFileList);
+    var notSendCnt = 0;
+    for(SendFileModal fileModal in this.sendFileList)
+    {
+      if(fileModal.status!="1")
+        notSendCnt++;
+    }
+    if(notSendCnt>1)
+      setState(() { sendAllVisibility = true; });
+    else
+      setState(() { sendAllVisibility = false; });
   }
 
   void removeSendList(int)
   {
     this.sendFileList.removeAt(int);
     setState(() => this.sendFileList = sendFileList);
+    var notSendCnt = 0;
+    for(SendFileModal fileModal in this.sendFileList)
+    {
+      if(fileModal.status!="1")
+        notSendCnt++;
+    }
+    if(notSendCnt>1)
+      setState(() { sendAllVisibility = true; });
+    else
+      setState(() { sendAllVisibility = false; });
   }
 
   void getPendingFile(String userId,String sessionId)
@@ -265,6 +339,88 @@ color: new Color(0xFFBFE0F3),
 
   }
 
+
+  sendFile(List<SendFileModal> fileList,int cnt) async
+  {
+    SendFileModal fileModal = fileList[cnt];
+    if(fileModal.status == "1")
+    {
+//      Scaffold.of(this.context).showSnackBar(new SnackBar(
+//        content: new Text(Translations.of(context).text('Sent')),
+//      ));
+
+      if(fileList.length-1 != cnt)
+      {
+        sendFile(fileList, ++cnt);
+      }
+      else
+      {
+        setState(() {
+          sendAllVisibility = false;
+        });
+      }
+    }
+    else
+    {
+      //_showDialog();
+      progressDialog(true);
+      Uri uri = Uri.parse(GetConstants.getUploadService());
+      http.MultipartRequest request = new http.MultipartRequest('POST', uri);
+      request.fields['userid'] = widget.userId;
+  request.fields['sessionid'] = widget.sessionId;
+
+
+  request.files.add(await http.MultipartFile.fromPath('file', fileModal.fileWay));
+
+  request.send().then((response) {
+  print("Response status: ${response.statusCode}");
+
+  if (response.statusCode == 200) {
+  refreshSendList(cnt);
+  progressDialog(false);
+  if(fileList.length-1 != cnt)
+    {
+      sendFile(fileList, ++cnt);
+    }
+  else
+    {
+      setState(() {
+        sendAllVisibility = false;
+      });
+    }
+//          final jsonResponse = json.decode(response.body);
+//          PostHttp resultHttp = PostHttp.fromJson(jsonResponse);
+//          if(resultHttp.status)
+//            {
+//              Scaffold.of(this.context).showSnackBar(new SnackBar(
+//                content: new Text("Servis Erişimi Başarılı Dosya Gönderildi."),
+//              ));
+//            }
+//          else
+//          {
+//            Scaffold.of(this.context).showSnackBar(new SnackBar(
+//              content: new Text("Başarısız"),
+//            ));
+//          }
+  }
+  else
+  {
+  progressDialog(false);
+  Scaffold.of(this.context).showSnackBar(new SnackBar(
+  content: new Text(Translations.of(context).text('Problem')),
+  ));
+  }
+  })
+      .catchError((onError) {
+  progressDialog(false);
+  Scaffold.of(this.context).showSnackBar(new SnackBar(
+  content: new Text(Translations.of(context).text('ServiceConnectionFailed')),
+  ));
+  }).timeout(const Duration(milliseconds: 1000));
+
+    // http.read("http://example.com/foobar.txt").then(print);
+  }
+  }
 }
 
 
@@ -323,6 +479,8 @@ color: new Color(0xFFBFE0F3),
 //
 //
 //}
+
+
 
 class ShapesPainterSend extends CustomPainter {
   @override
