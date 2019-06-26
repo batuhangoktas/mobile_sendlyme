@@ -20,5 +20,6 @@
 	"And": "and",
 	"Privacy": "Privacy Police",
 	"SessionTime": "Your session has expired",
-	"AllSend": "Send All"
+	"AllSend": "Send All",
+	"AllReceive": "Download All"
 }

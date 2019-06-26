@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sendlyme/localizationlib/translations.dart';
 import 'package:sendlyme/modal/posthttp.dart';
 import 'package:sendlyme/modal/receivefilesmodal.dart';
@@ -33,7 +34,7 @@ class SendReceive extends State<SendReceiveApp> {
   bool _saving = false;
   bool multiFileSizeCheckWrong = false;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool sendAllVisibility=false;
+  bool sendAllVisibility=false,receiveAllVisibility=false;
   @override
   initState() {
     super.initState();
@@ -150,11 +151,33 @@ color: new Color(0xFFBFE0F3),
 
                     new Container(
                       margin:EdgeInsets.only(top: 10),
-                      height: MediaQuery.of(context).size.height-205 ,
+                      height: MediaQuery.of(context).size.height-210 ,
                       width:MediaQuery.of(context).size.width,
                       child: new ReceiveFileList(getReceiveFileList(),refreshList,progressDialog),
                     ),
+                    Visibility(
+                        visible: receiveAllVisibility,
+                        child: new Container(
+                          margin:EdgeInsets.only(left: 25,right: 25),
+                          width:MediaQuery.of(context).size.width,
+                          height: 45,
 
+                          child: RaisedButton(
+                            elevation: 4.0,
+                            shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                            color: new Color(0xFF254C91),
+                            onPressed: receiveAll,
+                            child: Text(
+                              Translations.of(context).text('AllReceive'),
+                              style: new TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontFamily: 'PTSerif'
+                              ),
+                            ),
+                          ),
+                        )
+                    )
                   ],
                 ),
 
@@ -237,10 +260,27 @@ color: new Color(0xFFBFE0F3),
 
   }
 
+  void receiveAll() async {
+
+    List<ReceiveFileModal> fileList = getReceiveFileList();
+    receiveFile(fileList,0);
+
+  }
+
   void refreshList(int)
   {
     this.receiveFileList[int].status = "1";
     setState(() => this.receiveFileList = receiveFileList);
+    var notReceiveCnt = 0;
+    for(ReceiveFileModal fileModal in this.receiveFileList)
+    {
+      if(fileModal.status!="1")
+        notReceiveCnt++;
+    }
+    if(notReceiveCnt>1)
+      setState(() { receiveAllVisibility = true; });
+    else
+      setState(() { receiveAllVisibility = false; });
   }
 
   void refreshSendList(int)
@@ -317,6 +357,17 @@ color: new Color(0xFFBFE0F3),
             });
 
             setState(() => this.receiveFileList = receiveFileList);
+
+              var notReceiveCnt = 0;
+              for(ReceiveFileModal fileModal in this.receiveFileList)
+              {
+                if(fileModal.status!="1")
+                  notReceiveCnt++;
+              }
+              if(notReceiveCnt>1)
+                setState(() { receiveAllVisibility = true; });
+              else
+                setState(() { receiveAllVisibility = false; });
           }
         }
         else
@@ -420,6 +471,74 @@ color: new Color(0xFFBFE0F3),
 
     // http.read("http://example.com/foobar.txt").then(print);
   }
+  }
+
+  receiveFile(List<ReceiveFileModal> fileList,int cnt) async
+  {
+    ReceiveFileModal fileModal = fileList[cnt];
+    if(fileModal.status == "1")
+    {
+//      Scaffold.of(this.context).showSnackBar(new SnackBar(
+//        content: new Text(Translations.of(context).text('Sent')),
+//      ));
+
+      if(fileList.length-1 != cnt)
+      {
+        receiveFile(fileList, ++cnt);
+      }
+      else
+      {
+        setState(() {
+          receiveAllVisibility = false;
+        });
+      }
+    }
+    else
+    {
+        //_showDialog();
+        progressDialog(true);
+        var url = GetConstants.getDownloadService();
+        final response = await http.post(url, body: {'fileid': fileModal.fileId});
+        print("Response status: ${response.statusCode}");
+
+        if (response.statusCode == 200) {
+          if (response.contentLength == 0) {
+            return;
+          }
+          try {
+            Directory externalDir = await getExternalStorageDirectory();
+            String tempPath = externalDir.path;
+            String fileName = fileModal.fileName;
+            File file = new File('$tempPath/$fileName');
+            await file.writeAsBytes(response.bodyBytes);
+            //Navigator.of(context).pop();
+            progressDialog(false);
+
+            var url = GetConstants.getTookFileService();
+            http.post(url, body: {'fileid': fileModal.fileId})
+                .then((response) {
+              print("Response status: ${response.statusCode}");
+
+              if (response.statusCode == 200) {
+                final jsonResponse = json.decode(response.body);
+                PostHttp.fromJson(jsonResponse);
+                refreshList(cnt);
+                if(fileList.length-1 != cnt)
+                {
+                  receiveFile(fileList, ++cnt);
+                }
+                else
+                {
+                  setState(() {
+                    receiveAllVisibility = false;
+                  });
+                }
+              }
+            });
+          }
+          catch (value) {}
+        }
+    }
   }
 }
 
