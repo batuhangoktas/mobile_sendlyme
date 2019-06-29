@@ -1,9 +1,24 @@
 package com.batuhan.sendlyme;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.webkit.MimeTypeMap;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Random;
+
 import io.flutter.app.FlutterActivity;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -12,7 +27,7 @@ import io.flutter.plugins.GeneratedPluginRegistrant;
 public class MainActivity extends FlutterActivity {
 
   private static final String CHANNEL = "external";
-
+  private String sharedText;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -51,7 +66,76 @@ public class MainActivity extends FlutterActivity {
 
               }
             });
+
+    GeneratedPluginRegistrant.registerWith(this);
+    Intent intent = getIntent();
+    String action = intent.getAction();
+    String type = intent.getType();
+
+    if (Intent.ACTION_SEND.equals(action) && type != null) {
+      Log.e("Info","Content1"+type);
+        handleSendText(intent); // Handle text being sent
+    }
+
+    new MethodChannel(getFlutterView(), "app.channel.shared.data").setMethodCallHandler(
+            new MethodChannel.MethodCallHandler() {
+              @Override
+              public void onMethodCall(MethodCall call, MethodChannel.Result result) {
+                Log.e("Info","sharedText11"+sharedText);
+                if (call.method.contentEquals("getSharedText")) {
+                  result.success(sharedText);
+                  sharedText = null;
+                }
+              }
+            });
   }
+
+  void handleSendText(Intent intent) {
+
+    Uri uri =   intent.getParcelableExtra(android.content.Intent.EXTRA_STREAM);
+    try {
+      String[] filePathColumn = { MediaStore.Images.Media.DATA };
+      Cursor cursor = getContentResolver().query(uri, filePathColumn, null, null, null);
+      cursor.moveToFirst();
+      int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+      String filePath = cursor.getString(columnIndex);
+      cursor.close();
+      sharedText = filePath;
+    }
+    catch (Exception ex)
+    {
+      MimeTypeMap mime = MimeTypeMap.getSingleton();
+      String mimeTypeExtension = mime.getExtensionFromMimeType(getContentResolver().getType(uri));
+      File file = new File(getCacheDir(), "File_"+(new Random().nextInt(900)+100)+"."+mimeTypeExtension);
+      try {
+        InputStream inputStream=getContentResolver().openInputStream(uri);
+        OutputStream output = new FileOutputStream(file);
+        try {
+          byte[] buffer = new byte[4 * 1024];
+          int read;
+          while ((read = inputStream.read(buffer)) != -1) {
+            output.write(buffer, 0, read);
+          }
+          output.flush();
+        } finally {
+          output.close();
+          sharedText = file.getAbsolutePath();
+        }
+      } catch (FileNotFoundException e) {
+        e.printStackTrace();
+        sharedText = "ERROR";
+      } catch (IOException e) {
+        e.printStackTrace();
+      } finally {
+      }
+    }
+
+
+
+
+  //  Log.e("Info","getDataString"+intent.getData().getPath());
+  }
+
 
   @Override
   public void onRequestPermissionsResult(int requestCode,

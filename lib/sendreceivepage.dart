@@ -18,7 +18,8 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 class SendReceiveApp extends StatefulWidget {
   final String userId;
   final String sessionId;
-  const SendReceiveApp({this.userId,this.sessionId});
+  final String fileShared;
+  const SendReceiveApp({this.userId,this.sessionId,this.fileShared});
 
   @override
   SendReceive createState() => new SendReceive();
@@ -40,6 +41,9 @@ class SendReceive extends State<SendReceiveApp> {
     super.initState();
     getPendingFile(widget.userId,widget.sessionId);
     timer = new Timer.periodic(Duration(seconds: 2), (Timer t) => getPendingFile(widget.userId,widget.sessionId));
+    if(!widget.fileShared.isEmpty) {
+      getFilePath();
+    }
   }
 
   @override
@@ -235,7 +239,14 @@ color: new Color(0xFFBFE0F3),
   }
   void getFilePath() async {
     try {
-      Map<String,String> multiFileList = await FilePicker.getMultiFilePath(type: FileType.ANY);
+      Map<String,String> multiFileList = new Map<String,String>();
+      if(widget.fileShared.isEmpty) {
+        multiFileList = await FilePicker.getMultiFilePath(type: FileType.ANY);
+      }
+      else
+        {
+          multiFileList.addAll({'filePath': widget.fileShared});
+        }
       multiFileList.forEach(multiFileCheck);
 
      if(!multiFileSizeCheckWrong)

@@ -19,6 +19,15 @@ class MenuPageApp extends State<MenuPage>
   final GlobalKey<ScaffoldState> mScaffoldState = new GlobalKey<ScaffoldState>();
   String sessionId="";
   bool _saving = false;
+  static const platform = const MethodChannel('app.channel.shared.data');
+  String dataShared = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getSharedText();
+  }
 
   void progressDialog(bool isVisibility)
   {
@@ -271,7 +280,7 @@ margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
           progressDialog(false);
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => SendReceiveApp(sessionId: sessionId,userId: userId)),
+            MaterialPageRoute(builder: (context) => SendReceiveApp(sessionId: sessionId,userId: userId,fileShared: dataShared)),
           );
         }
     }
@@ -298,7 +307,15 @@ margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
       },
     );
   }
-
+  getSharedText() async {
+    var sharedData = await platform.invokeMethod("getSharedText");
+    if (sharedData != null) {
+      setState(() {
+        dataShared = sharedData;
+        scan();
+      });
+    }
+  }
 
 }
 
