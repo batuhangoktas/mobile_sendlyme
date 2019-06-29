@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -86,6 +87,31 @@ public class MainActivity extends FlutterActivity {
                   result.success(sharedText);
                   sharedText = null;
                 }
+              }
+            });
+
+    new MethodChannel(getFlutterView(), "com.batuhan.sendly.mediascan").setMethodCallHandler(
+            new MethodChannel.MethodCallHandler() {
+              @Override
+              public void onMethodCall(MethodCall call, MethodChannel.Result result) {
+                Log.e("Info","Media"+call.argument("filePath"));
+
+                try {
+                  MediaScannerConnection.scanFile(getApplicationContext(),
+                          new String[] { call.argument("filePath") }, null,
+                          new MediaScannerConnection.OnScanCompletedListener() {
+                            public void onScanCompleted(String path, Uri uri) {
+                              Log.i("ExternalStorage", "Scanned " + path + ":");
+                              Log.i("ExternalStorage", "-> uri=" + uri);
+                            }
+                          });
+                  result.success(1);
+                }
+                catch (Exception e)
+                {
+                  result.success(0);
+                }
+
               }
             });
   }

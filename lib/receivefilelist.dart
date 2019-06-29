@@ -16,7 +16,8 @@ class ReceiveFileList  extends StatelessWidget {
   final List<ReceiveFileModal> _receiveFileModal;
   Function(int) refreshList;
   Function(bool) progressDialog;
-  ReceiveFileList(this._receiveFileModal,this.refreshList,this.progressDialog);
+  Function(String) mediaBroadCast;
+  ReceiveFileList(this._receiveFileModal,this.refreshList,this.progressDialog,this.mediaBroadCast);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class ReceiveFileList  extends StatelessWidget {
       // A callback that will return a widget.
       itemBuilder: (context, int) {
         // In our case, a DogCard for each doggo.
-        return ReceiveFileListItem(_receiveFileModal[int],refreshList,int,progressDialog);
+        return ReceiveFileListItem(_receiveFileModal[int],refreshList,int,progressDialog,mediaBroadCast);
       },
     );
   }
@@ -45,8 +46,9 @@ class ReceiveFileListItem extends StatelessWidget {
   final ReceiveFileModal _receiveFileModal;
   Function(int) refreshList;
   Function(bool) progressDialog;
+  Function(String) mediaBroadCast;
   var itemNo=0;
-  ReceiveFileListItem(this._receiveFileModal,this.refreshList,this.itemNo,this.progressDialog);
+  ReceiveFileListItem(this._receiveFileModal,this.refreshList,this.itemNo,this.progressDialog,this.mediaBroadCast);
   BuildContext context;
 
 
@@ -137,7 +139,7 @@ class ReceiveFileListItem extends StatelessWidget {
     if(_receiveFileModal.status == "1")
       {
         Directory externalDir = await getExternalStorageDirectory();
-        String tempPath = externalDir.path;
+        String tempPath = externalDir.path+"/Download/";
         File file = new File('$tempPath/$fileName');
 
 //        Scaffold.of(this.context).showSnackBar(new SnackBar(
@@ -161,12 +163,12 @@ else {
         }
         try {
           Directory externalDir = await getExternalStorageDirectory();
-          String tempPath = externalDir.path;
+          String tempPath = externalDir.path+"/Download/";
           File file = new File('$tempPath/$fileName');
           await file.writeAsBytes(response.bodyBytes);
           //Navigator.of(context).pop();
           progressDialog(false);
-
+          mediaBroadCast('$tempPath/$fileName');
           var url = GetConstants.getTookFileService();
           http.post(url, body: {'fileid': fileId})
               .then((response) {

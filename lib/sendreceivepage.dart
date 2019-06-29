@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sendlyme/localizationlib/translations.dart';
 import 'package:sendlyme/modal/posthttp.dart';
@@ -36,6 +37,7 @@ class SendReceive extends State<SendReceiveApp> {
   bool multiFileSizeCheckWrong = false;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool sendAllVisibility=false,receiveAllVisibility=false;
+  static const platform = const MethodChannel('com.batuhan.sendly.mediascan');
   @override
   initState() {
     super.initState();
@@ -157,7 +159,7 @@ color: new Color(0xFFBFE0F3),
                       margin:EdgeInsets.only(top: 10),
                       height: MediaQuery.of(context).size.height-210 ,
                       width:MediaQuery.of(context).size.width,
-                      child: new ReceiveFileList(getReceiveFileList(),refreshList,progressDialog),
+                      child: new ReceiveFileList(getReceiveFileList(),refreshList,progressDialog,mediaBroadCast),
                     ),
                     Visibility(
                         visible: receiveAllVisibility,
@@ -484,6 +486,11 @@ color: new Color(0xFFBFE0F3),
   }
   }
 
+  mediaBroadCast(String filePath) async
+  {
+    final int result = await platform.invokeMethod('MediaScan',{"filePath":filePath});
+    print("mediascan result: ${result}");
+  }
   receiveFile(List<ReceiveFileModal> fileList,int cnt) async
   {
     ReceiveFileModal fileModal = fileList[cnt];
@@ -518,13 +525,13 @@ color: new Color(0xFFBFE0F3),
           }
           try {
             Directory externalDir = await getExternalStorageDirectory();
-            String tempPath = externalDir.path;
+            String tempPath = externalDir.path+"/Download/";
             String fileName = fileModal.fileName;
             File file = new File('$tempPath/$fileName');
             await file.writeAsBytes(response.bodyBytes);
             //Navigator.of(context).pop();
             progressDialog(false);
-
+            mediaBroadCast('$tempPath/$fileName');
             var url = GetConstants.getTookFileService();
             http.post(url, body: {'fileid': fileModal.fileId})
                 .then((response) {
