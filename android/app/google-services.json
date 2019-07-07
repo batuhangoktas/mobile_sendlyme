@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "999352273991",
+    "firebase_url": "https://sendlyme.firebaseio.com",
+    "project_id": "sendlyme",
+    "storage_bucket": "sendlyme.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999352273991:android:68e7dd322b2d3055",
+        "android_client_info": {
+          "package_name": "com.batuhan.sendlyme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "999352273991-20d4d37nq5vvo30uhf0otccc6tde1vsd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.batuhan.sendlyme",
+            "certificate_hash": "f69e242909df467c388d2e0402d115f3b12e70ab"
+          }
+        },
+        {
+          "client_id": "999352273991-vjq6497h9vini4f4css937nrt864r3in.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDN6tUHYGI-RkuoqpB4o7TlyyLrVFra6yw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "999352273991-vjq6497h9vini4f4css937nrt864r3in.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
