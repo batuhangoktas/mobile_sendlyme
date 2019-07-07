@@ -10,10 +10,10 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8bdaef2f-19eb-45eb-a51a-8f74e29850bc" name="Default" comment="Dosya üzerinden paylaş özelliği eklendi.">
+    <list default="true" id="8bdaef2f-19eb-45eb-a51a-8f74e29850bc" name="Default" comment="MediaScanner Android ve Flutter Bridge ile yapıldı.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/batuhan/sendlyme/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/batuhan/sendlyme/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/receivefilelist.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/receivefilelist.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/i18n/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/i18n/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/i18n/tr.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/i18n/tr.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/sendreceivepage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sendreceivepage.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
@@ -31,8 +31,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="14" column="64" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="64" />
+            <state relative-caret-position="221">
+              <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -41,10 +41,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/menupage.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
+              <folding>
+                <element signature="e#0#48#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/sendreceivepage.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="533" column="26" selection-start-line="533" selection-start-column="12" selection-end-line="533" selection-end-column="26" />
+            <state relative-caret-position="179">
+              <caret line="218" column="29" selection-start-line="218" selection-start-column="29" selection-end-line="218" selection-end-column="29" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -53,37 +65,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Flutter/flutter/packages/flutter/lib/src/services/platform_channel.dart">
+        <entry file="file://$PROJECT_DIR$/assets/i18n/tr.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="301" column="12" selection-start-line="301" selection-start-column="12" selection-end-line="301" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-238">
-              <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="79" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/batuhan/sendlyme/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="106" column="29" selection-start-line="106" selection-start-column="29" selection-end-line="106" selection-end-column="29" />
+            <state relative-caret-position="84">
+              <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/i18n/en.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="169">
+              <caret line="18" column="37" lean-forward="true" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/receivefilelist.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="171" column="54" lean-forward="true" selection-start-line="171" selection-start-column="54" selection-end-line="171" selection-end-column="54" />
+            <state relative-caret-position="165">
+              <caret line="172" column="50" selection-start-line="172" selection-start-column="50" selection-end-line="172" selection-end-column="50" />
               <folding>
                 <element signature="e#1#18#0" expanded="true" />
               </folding>
@@ -94,7 +97,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://C:/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-0.5.0/lib/path_provider.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
+            <state relative-caret-position="1122">
               <caret line="71" selection-start-line="71" selection-end-line="71" />
             </state>
           </provider>
@@ -103,7 +106,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://C:/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.12.0/lib/http.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
+            <state relative-caret-position="2499">
               <caret line="169" selection-start-line="169" selection-end-line="169" />
             </state>
           </provider>
@@ -112,8 +115,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/sendfilelist.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="79" column="46" selection-start-line="79" selection-start-column="46" selection-end-line="79" selection-end-column="46" />
+            <state relative-caret-position="71">
+              <caret line="41" column="7" selection-start-line="41" selection-start-column="7" selection-end-line="67" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -121,7 +124,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://C:/Flutter/flutter/packages/flutter/lib/src/material/ink_well.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
+            <state relative-caret-position="9452">
               <caret line="569" column="39" selection-start-line="569" selection-start-column="39" selection-end-line="569" selection-end-column="39" />
             </state>
           </provider>
@@ -139,8 +142,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>(fileModal.status</find>
-      <find>remove</find>
       <find>refreshList</find>
       <find>sendFile</find>
       <find>tab</find>
@@ -157,7 +158,6 @@
       <find>Join</find>
       <find>init</find>
       <find>addAll</find>
-      <find>fileShared</find>
       <find>receiveFile</find>
       <find>scan</find>
       <find>getAppl</find>
@@ -169,6 +169,9 @@
       <find>ReceiveFileList</find>
       <find>platform</find>
       <find>mediaBroadCast</find>
+      <find>fileShared</find>
+      <find>long</find>
+      <find>incomingShareFile</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -216,13 +219,13 @@
         <option value="$PROJECT_DIR$/pubspec.yaml" />
         <option value="$PROJECT_DIR$/android/build.gradle" />
         <option value="$PROJECT_DIR$/android/app/build.gradle" />
+        <option value="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/android/app/src/main/java/com/batuhan/sendlyme/MainActivity.java" />
+        <option value="$PROJECT_DIR$/lib/receivefilelist.dart" />
+        <option value="$PROJECT_DIR$/lib/menupage.dart" />
+        <option value="$PROJECT_DIR$/lib/sendreceivepage.dart" />
         <option value="$PROJECT_DIR$/assets/i18n/en.json" />
         <option value="$PROJECT_DIR$/assets/i18n/tr.json" />
-        <option value="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/lib/menupage.dart" />
-        <option value="$PROJECT_DIR$/android/app/src/main/java/com/batuhan/sendlyme/MainActivity.java" />
-        <option value="$PROJECT_DIR$/lib/sendreceivepage.dart" />
-        <option value="$PROJECT_DIR$/lib/receivefilelist.dart" />
       </list>
     </option>
   </component>
@@ -237,6 +240,61 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sendlyme" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sendlyme" type="462c0819:PsiDirectoryNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sendlyme" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sendlyme" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="i18n" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sendlyme" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="launcher" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sendlyme" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sendlyme" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="localizationlib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sendlyme" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -344,60 +402,17 @@
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="lib" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="AndroidView" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
             <path>
-              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sendlyme" type="462c0819:PsiDirectoryNode" />
+              <item name="sendlyme" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="lib" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="constants" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
-              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sendlyme" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sendlyme" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sendlyme" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="i18n" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sendlyme" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="launcher" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sendlyme" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sendlyme" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="localizationlib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sendlyme" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sendlyme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="sendlyme" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="lib" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="localizationlib" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -754,7 +769,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561821255571</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="MediaScanner Android ve Flutter Bridge ile yapıldı.">
+      <created>1561828283000</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1561828283000</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView">
@@ -781,17 +803,17 @@
       <window_info id="Resources Explorer" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4977307" visible="true" weight="0.30605564" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49621785" weight="0.1767594" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49546143" visible="true" weight="0.30605564" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49394855" weight="0.21931261" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
       <window_info anchor="bottom" id="Dart Analysis" order="7" weight="0.3289689" />
       <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50226927" side_tool="true" visible="true" weight="0.30605564" />
-      <window_info anchor="bottom" id="Logcat" order="10" sideWeight="0.49848714" weight="0.31914893" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49924356" weight="0.3289689" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5045386" side_tool="true" visible="true" weight="0.30605564" />
+      <window_info anchor="bottom" id="Logcat" order="10" sideWeight="0.4969743" weight="0.31914893" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.49924356" weight="0.3289689" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49848714" weight="0.3289689" />
       <window_info anchor="bottom" id="Messages" order="13" visible="true" weight="0.27986908" />
       <window_info anchor="bottom" id="Build" order="14" />
       <window_info anchor="bottom" id="Flutter Performance" order="15" side_tool="true" />
@@ -819,7 +841,8 @@
     <MESSAGE value="Çoklu Seçim ve Tümünü Gönder" />
     <MESSAGE value="Tümünü İndir" />
     <MESSAGE value="Dosya üzerinden paylaş özelliği eklendi." />
-    <option name="LAST_COMMIT_MESSAGE" value="Dosya üzerinden paylaş özelliği eklendi." />
+    <MESSAGE value="MediaScanner Android ve Flutter Bridge ile yapıldı." />
+    <option name="LAST_COMMIT_MESSAGE" value="MediaScanner Android ve Flutter Bridge ile yapıldı." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -861,73 +884,58 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/sendreceivepage.dart</url>
-          <line>271</line>
+          <line>330</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/sendreceivepage.dart</url>
-          <line>441</line>
+          <line>500</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/sendreceivepage.dart</url>
-          <line>444</line>
+          <line>503</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/sendreceivepage.dart</url>
-          <line>408</line>
+          <line>467</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/sendreceivepage.dart</url>
-          <line>409</line>
+          <line>468</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/sendreceivepage.dart</url>
-          <line>415</line>
+          <line>474</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/sendreceivepage.dart</url>
-          <line>278</line>
+          <line>337</line>
           <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/sendreceivepage.dart</url>
-          <line>496</line>
+          <line>563</line>
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/sendreceivepage.dart</url>
-          <line>521</line>
+          <line>588</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/sendreceivepage.dart</url>
-          <line>244</line>
+          <line>302</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/sendreceivepage.dart</url>
-          <line>249</line>
+          <line>307</line>
           <option name="timeStamp" value="59" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/sendreceivepage.dart</url>
-          <line>44</line>
-          <option name="timeStamp" value="62" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/sendreceivepage.dart</url>
-          <line>45</line>
-          <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/sendreceivepage.dart</url>
-          <line>213</line>
-          <option name="timeStamp" value="64" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/receivefilelist.dart</url>
@@ -946,18 +954,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/sendreceivepage.dart</url>
-          <line>526</line>
+          <line>593</line>
           <option name="timeStamp" value="71" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/sendreceivepage.dart</url>
-          <line>490</line>
-          <option name="timeStamp" value="73" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/sendreceivepage.dart</url>
-          <line>491</line>
-          <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/android/app/src/main/java/com/batuhan/sendlyme/MainActivity.java</url>
@@ -1278,106 +1276,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/i18n/en.json">
+    <entry file="file://C:/Flutter/flutter/packages/flutter/lib/src/services/platform_channel.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/i18n/tr.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/menupage.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="4964">
+          <caret line="301" column="12" selection-start-line="301" selection-start-column="12" selection-end-line="301" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-238">
+        <state relative-caret-position="170">
           <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="79" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/sendfilelist.dart">
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/batuhan/sendlyme/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="79" column="46" selection-start-line="79" selection-start-column="46" selection-end-line="79" selection-end-column="46" />
+        <state relative-caret-position="1411">
+          <caret line="106" column="29" selection-start-line="106" selection-start-column="29" selection-end-line="106" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://C:/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-0.5.0/lib/path_provider.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
+        <state relative-caret-position="1122">
           <caret line="71" selection-start-line="71" selection-end-line="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.12.0/lib/http.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2499">
+          <caret line="169" selection-start-line="169" selection-end-line="169" />
         </state>
       </provider>
     </entry>
     <entry file="file://C:/Flutter/flutter/packages/flutter/lib/src/material/ink_well.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
+        <state relative-caret-position="9452">
           <caret line="569" column="39" selection-start-line="569" selection-start-column="39" selection-end-line="569" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/receivefilelist.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="172" column="50" selection-start-line="172" selection-start-column="50" selection-end-line="172" selection-end-column="50" />
+          <folding>
+            <element signature="e#1#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/main.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="14" column="64" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="64" />
+        <state relative-caret-position="221">
+          <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.12.0/lib/http.dart">
+    <entry file="file://$PROJECT_DIR$/lib/menupage.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="169" selection-start-line="169" selection-end-line="169" />
+        <state relative-caret-position="119">
+          <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Flutter/flutter/packages/flutter/lib/src/services/platform_channel.dart">
+    <entry file="file://$PROJECT_DIR$/lib/sendfilelist.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="301" column="12" selection-start-line="301" selection-start-column="12" selection-end-line="301" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/batuhan/sendlyme/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="106" column="29" selection-start-line="106" selection-start-column="29" selection-end-line="106" selection-end-column="29" />
+        <state relative-caret-position="71">
+          <caret line="41" column="7" selection-start-line="41" selection-start-column="7" selection-end-line="67" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/sendreceivepage.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="533" column="26" selection-start-line="533" selection-start-column="12" selection-end-line="533" selection-end-column="26" />
+        <state relative-caret-position="179">
+          <caret line="218" column="29" selection-start-line="218" selection-start-column="29" selection-end-line="218" selection-end-column="29" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/receivefilelist.dart">
+    <entry file="file://$PROJECT_DIR$/assets/i18n/tr.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="171" column="54" lean-forward="true" selection-start-line="171" selection-start-column="54" selection-end-line="171" selection-end-column="54" />
-          <folding>
-            <element signature="e#1#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="84">
+          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/i18n/en.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="18" column="37" lean-forward="true" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
         </state>
       </provider>
     </entry>

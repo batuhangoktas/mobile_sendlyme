@@ -21,5 +21,6 @@
 	"Privacy": "Privacy Police",
 	"SessionTime": "Your session has expired",
 	"AllSend": "Send All",
-	"AllReceive": "Download All"
+	"AllReceive": "Download All",
+	"FinishSessionMessage": "Do you want to leave this session?"
 }

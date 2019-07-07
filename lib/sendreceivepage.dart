@@ -20,6 +20,7 @@ class SendReceiveApp extends StatefulWidget {
   final String userId;
   final String sessionId;
   final String fileShared;
+
   const SendReceiveApp({this.userId,this.sessionId,this.fileShared});
 
   @override
@@ -38,12 +39,14 @@ class SendReceive extends State<SendReceiveApp> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool sendAllVisibility=false,receiveAllVisibility=false;
   static const platform = const MethodChannel('com.batuhan.sendly.mediascan');
+  String incomingShareFile;
   @override
   initState() {
     super.initState();
     getPendingFile(widget.userId,widget.sessionId);
     timer = new Timer.periodic(Duration(seconds: 2), (Timer t) => getPendingFile(widget.userId,widget.sessionId));
-    if(!widget.fileShared.isEmpty) {
+    incomingShareFile = widget.fileShared;
+    if(!isNullOrEmpty(incomingShareFile)) {
       getFilePath();
     }
   }
@@ -64,7 +67,9 @@ class SendReceive extends State<SendReceiveApp> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return new WillPopScope(
+        onWillPop: _onBackPressed,
+        child:   Scaffold(
       key: _scaffoldKey,
       body:  ModalProgressHUD(opacity: 0.4,inAsyncCall: this._saving  ,
         child: DefaultTabController(
@@ -195,9 +200,62 @@ color: new Color(0xFFBFE0F3),
           ),
         ),),
       ),
+    )
     );
   }
 
+  Future<bool> _onBackPressed() {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius:
+          BorderRadius.all(Radius.circular(15))),
+          content: new Text(Translations.of(context).text('FinishSessionMessage')),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text(Translations.of(context).text('No'),
+                style: TextStyle(color: Colors.pink),),
+              onPressed: () {
+                Navigator.of(context).pop(false);
+              },
+            ),
+            new FlatButton(
+              child: new Text(Translations.of(context).text('Yes'),
+                style: TextStyle(color: Colors.pink),),
+              onPressed: () {
+                Navigator.of(context).pop(true);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget roundedButton(String buttonLabel, Color bgColor, Color textColor) {
+    var loginBtn = new Container(
+      padding: EdgeInsets.all(5.0),
+      alignment: FractionalOffset.center,
+      decoration: new BoxDecoration(
+        color: bgColor,
+        borderRadius: new BorderRadius.all(const Radius.circular(10.0)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: const Color(0xFF696969),
+            offset: Offset(1.0, 6.0),
+            blurRadius: 0.001,
+          ),
+        ],
+      ),
+      child: Text(
+        buttonLabel,
+        style: new TextStyle(
+            color: textColor, fontSize: 20.0, fontWeight: FontWeight.bold),
+      ),
+    );
+    return loginBtn;
+  }
 
 
   getFileList() {
@@ -242,12 +300,13 @@ color: new Color(0xFFBFE0F3),
   void getFilePath() async {
     try {
       Map<String,String> multiFileList = new Map<String,String>();
-      if(widget.fileShared.isEmpty) {
+      if(isNullOrEmpty(incomingShareFile)) {
         multiFileList = await FilePicker.getMultiFilePath(type: FileType.ANY);
       }
       else
         {
-          multiFileList.addAll({'filePath': widget.fileShared});
+          multiFileList.addAll({'filePath': incomingShareFile});
+          incomingShareFile=null;
         }
       multiFileList.forEach(multiFileCheck);
 
@@ -484,6 +543,14 @@ color: new Color(0xFFBFE0F3),
 
     // http.read("http://example.com/foobar.txt").then(print);
   }
+  }
+
+  bool isNullOrEmpty(String value)
+  {
+    if(value!=null)
+      if(value.isNotEmpty)
+        return false;
+      return true;
   }
 
   mediaBroadCast(String filePath) async
