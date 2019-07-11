@@ -63,7 +63,7 @@ class StartPage extends State<StartPageApp> {
       });
 
       if(timerQr==null) {
-        timerQr = Timer.periodic(Duration(seconds: 15), (Timer t) =>
+        timerQr = Timer.periodic(Duration(seconds: 45), (Timer t) =>
         {
         setState(() {
         this.sessionId="";
