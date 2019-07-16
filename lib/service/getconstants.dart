@@ -11,6 +11,7 @@ class GetConstants
   static String downloadService = "/sendlyme/session/download";
   static String tookFileService = "/sendlyme/session/tookfile";
   static String uploadService = "/sendlyme/session/upload";
+  static String finishSessionService = "/sendlyme/session/finishsession";
 
   static String getService()
   {
@@ -39,5 +40,9 @@ class GetConstants
   static String getUploadService()
   {
     return getService().toString() + uploadService;
+  }
+  static String getFinishSessionService()
+  {
+    return getService().toString() + finishSessionService;
   }
 }

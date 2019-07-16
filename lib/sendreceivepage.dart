@@ -225,6 +225,11 @@ color: new Color(0xFFBFE0F3),
                 style: TextStyle(color: Colors.pink),),
               onPressed: () {
                 Navigator.of(context).pop(true);
+                var url = GetConstants.getFinishSessionService();
+                http.post(url, body: {'sessionid': widget.sessionId})
+                    .then((response) {
+                  print("Response finish status: ${response.statusCode}");
+                });
               },
             ),
           ],
