@@ -22,5 +22,7 @@
 	"SessionTime": "Your session has expired",
 	"AllSend": "Send All",
 	"AllReceive": "Download All",
-	"FinishSessionMessage": "Do you want to leave this session?"
+	"FinishSessionMessage": "Do you want to leave this session?",
+	"SendList": "Sent",
+	"ReceiveList": "Received"
 }

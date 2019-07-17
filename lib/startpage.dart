@@ -110,7 +110,7 @@ class StartPage extends State<StartPageApp> {
     return Scaffold(
         key: mScaffoldState,
       appBar: AppBar(
-        title: Text("Start"),
+        title: Text(Translations.of(context).text('MainPageStart')),
       ),
 
       body: new Container(

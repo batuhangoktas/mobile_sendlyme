@@ -22,5 +22,7 @@
 	"SessionTime": "Oturumunuz sona ermiştir",
 	"AllSend": "Tümünü Gönder",
 	"AllReceive": "Tümünü İndir",
-	"FinishSessionMessage": "Çıkış yapmak istediğinize emin misiniz?"
+	"FinishSessionMessage": "Çıkış yapmak istediğinize emin misiniz?",
+	"SendList": "Gönderilen",
+	"ReceiveList": "Alınan"
 }

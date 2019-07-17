@@ -78,8 +78,8 @@ class SendReceive extends State<SendReceiveApp> {
           appBar: AppBar(
             bottom: TabBar(
               tabs: [
-                Tab(icon: Icon(Icons.send)),
-                Tab(icon: Icon(Icons.receipt)),
+                Tab(text: Translations.of(context).text('SendList'),),
+                Tab(text: Translations.of(context).text('ReceiveList'),),
               ],
             ),
             title: Text( Translations.of(context).text('SendReceive')),
