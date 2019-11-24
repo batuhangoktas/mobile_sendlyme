@@ -44,15 +44,25 @@ flutter:
       fonts:
           - asset: fonts/Iceberg-Regular.ttf
   assets:
-    - join.png
-    - start.png
-    - send_logo.gif
-    - splash.gif
-    - start_background.png
     - qr.ico
     - join.ico
+    - doc.png
+    - jpg.png
+    - mp3.png
+    - mp4.png
+    - pdf.png
+    - png.png
+    - powerpoint.png
+    - txt.png
+    - unknown.png
+    - xls.png
     - assets/i18n/tr.json
     - assets/i18n/en.json
+    - download.png
+    - upload.png
+    - uploaded.png
+    - delete.png
+    - show.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

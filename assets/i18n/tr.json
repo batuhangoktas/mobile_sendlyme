@@ -24,5 +24,6 @@
 	"AllReceive": "Tümünü İndir",
 	"FinishSessionMessage": "Çıkış yapmak istediğinize emin misiniz?",
 	"SendList": "Gönderilen",
-	"ReceiveList": "Alınan"
+	"ReceiveList": "Alınan",
+	"Delete": "Sil"
 }

@@ -92,29 +92,24 @@ class ReceiveFileListItem extends StatelessWidget {
             ],),
           ),
         ),
+        new Text((int.parse(_receiveFileModal.fileSize)/(1024*1024)).toStringAsFixed(2) + " mb" ,style: fileSizeTextStyle(),),
 
         Expanded(
-            flex: 2,
+            flex: 1,
             child: new Container(
-
 
               height: 45,
               padding: EdgeInsets.all(3),
               margin: EdgeInsets.only(left: 10.0),
-              child: new RaisedButton(
-                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0)),
-                elevation: 4.0,
-                color: new Color(0xFF254C91),
-                onPressed:  () => getFile(_receiveFileModal.fileId,_receiveFileModal.fileName),
+              child:    new GestureDetector(
+                onTap: () {
+                  getFile(_receiveFileModal.fileId,_receiveFileModal.fileName);
+                },
                 child: getText(),
-
               ),
             )
         ),
-
-
-
-      ],
+        ],
 
       ),
     ),
@@ -224,11 +219,17 @@ else {
 
   getText() {
     if(_receiveFileModal.status=="1") {
-      return new Text(Translations.of(context).text('Show'), style: receiveTextStyle(),);
+      return new  Image.asset("assets/show.png",height: 45.0,width: 60.0,);
+   //   return new Text(Translations.of(context).text('Show'), style: receiveTextStyle(),);
     }
     else
       {
-        return new Text(Translations.of(context).text('Download'), style: receiveTextStyle(),);
+        return new  Image.asset("assets/download.png",height: 45.0,width: 60.0,);
+       // return new Text(Translations.of(context).text('Download'), style: receiveTextStyle(),);
       }
+  }
+  TextStyle fileSizeTextStyle()
+  {
+    return TextStyle(fontSize: 15, fontFamily: 'PTSerif', color: new Color(0xFF254C91),);
   }
 }

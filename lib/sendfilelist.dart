@@ -8,6 +8,7 @@ import 'package:sendlyme/modal/sendfilesmodal.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:sendlyme/service/getconstants.dart';
+import 'package:sendlyme/constants/DataUtil.dart';
 
 class SendFileList extends StatelessWidget {
   final List<SendFileModal> _sendFileModal;
@@ -35,7 +36,7 @@ class SendFileList extends StatelessWidget {
       // A callback that will return a widget.
       itemBuilder: (context, int) {
         return GestureDetector(
-          child: SendFileListItem(userId,sessionId,_sendFileModal[int],refreshSendList,int,progressDialog),
+          child: SendFileListItem(userId,sessionId,_sendFileModal[int],refreshSendList,int,progressDialog,removeSendList),
           onLongPress: () => {
 
           // flutter defined function
@@ -80,12 +81,13 @@ class SendFileList extends StatelessWidget {
 class SendFileListItem extends StatelessWidget {
   final SendFileModal _sendFileModal;
   Function(int) refreshSendList;
+  Function(int) removeSendList;
   Function(bool) progressDialog;
   final String userId;
   final String sessionId;
   var itemNo=0;
 
-  SendFileListItem(this.userId,this.sessionId,this._sendFileModal,this.refreshSendList,this.itemNo,this.progressDialog);
+  SendFileListItem(this.userId,this.sessionId,this._sendFileModal,this.refreshSendList,this.itemNo,this.progressDialog,this.removeSendList);
   BuildContext context;
   @override
   Widget build(BuildContext context) {
@@ -99,56 +101,80 @@ class SendFileListItem extends StatelessWidget {
 
         new Container(
           decoration: new BoxDecoration(
-            borderRadius: new BorderRadius.circular(12.0),
-              color: new Color(0x77FFFFFF)
+            borderRadius: new BorderRadius.circular(5.0),
+              color: new Color(0x77FFFFFF),
           ),
           child:
             Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
             children: <Widget>[
 
-              Expanded(
-                flex: 4,
-                child:
+            new Flexible( child:
                 new Container(
                   margin: EdgeInsets.only(left: 10),
-                  child: Row(children: <Widget>[
-                    new Text((_sendFileModal.orderNo).toString(),style: customTextStyle(),),
-                    new Text('-',style: customTextStyle(),),
-          Expanded(
-            child: new Text(_sendFileModal.fileName,style: customTextStyle(),maxLines: 1,softWrap: true,overflow: TextOverflow.ellipsis)
-          )
-
-                    ,
-                  ],),
+                  child: new Text(_sendFileModal.fileName,style: customTextStyle(),maxLines: 1,softWrap: true,overflow: TextOverflow.ellipsis)
                 ),
-              ),
-
-      Expanded(
-        flex: 3,
-        child: new Container(
-
-
-          height: 45,
-          padding: EdgeInsets.all(3),
-          margin: EdgeInsets.only(left: 10.0),
-          child: new RaisedButton(
-            shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0)),
-            elevation: 4.0,
-            color: new Color(0xFF254C91),
-            onPressed:  () => sendFile(this.userId,this.sessionId, _sendFileModal.fileWay),
-            child: getText(),
-
-          ),
-        )
-      ),
+            ),
+            new GestureDetector(
+              onTap: () {
+                removeSendList(itemNo);
+              },
+              child: getDeleteText(),
+            ),
 
 
             ],
         ),
+
     ),
+        new Container(
+          decoration: new BoxDecoration(
+            borderRadius: new BorderRadius.circular(5.0),
+            color: new Color(0x77FFFFFF),
+          ),
+          child:
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+            children: <Widget>[
+              new Container(
+
+                width: 40,
+                height: 50,
+                padding: EdgeInsets.only(left:3,top:3,right:5,bottom:3),
+                child: Image(
+                    width: 30,
+                    height: 30,
+                    image: getLogoByType(_sendFileModal.fileName)
+                ),
+              ),
+    new Container(
+    margin: EdgeInsets.only(left: 20),
+    child: new Text(getFileSize(_sendFileModal.fileWay),style: fileSizeTextStyle(),),
+    ),
+          new Container(
+
+
+                    child: new Row(
+                      children: <Widget>[
+
+                        new GestureDetector(
+                          onTap: () {
+                            sendFile(this.userId,this.sessionId, _sendFileModal.fileWay);
+                          },
+                          child: getText(),
+                        ),
+                      ],
+                    )
+                  )
+
+
+
+            ],
+          ),
+
+        ),
 
   ]
         ),
@@ -160,6 +186,15 @@ class SendFileListItem extends StatelessWidget {
   TextStyle customTextStyle()
   {
     return TextStyle(fontSize: 17, fontFamily: 'PTSerif', color: new Color(0xFF254C91),);
+  }
+  TextStyle fileSizeTextStyle()
+  {
+    return TextStyle(fontSize: 15, fontFamily: 'PTSerif', color: new Color(0xFF254C91),);
+  }
+  getFileSize(String fileWay)
+  {
+    int fSize = File(fileWay).lengthSync();
+    return(((fSize)/(1024*1024)).toStringAsFixed(2)+" mb");
   }
 
   TextStyle sendTextStyle()
@@ -244,13 +279,26 @@ class SendFileListItem extends StatelessWidget {
   }
   getText() {
     if(_sendFileModal.status=="1") {
-      return new Text(Translations.of(context).text('Sent'),style: sendTextStyle());
+      return new  Image.asset("assets/uploaded.png",height: 45.0,width: 50.0,);
     }
     else
     {
-      return new Text(Translations.of(context).text('Send'), style: sendTextStyle(),);
+      return new  Image.asset("assets/upload.png",height: 45.0,width: 50.0,);
     }
 
+  }
+  getDeleteText() {
+    return new Column( children: <Widget>[
+     new Container( width: 50,child: new Padding(padding: EdgeInsets.all( 5.0),child: new  Image.asset("assets/delete.png",height: 25.0,width: 25.0),),),
+    ],);
+    //return new Text(Translations.of(context).text('Delete'), style: sendTextStyle(),);
+  }
+
+  getLogoByType(String fileName)
+  {
+    DataUtil dataUtil = new DataUtil();
+    String extension = dataUtil.getLogoByType(fileName);
+    return new AssetImage("assets/"+extension);
   }
 }
 

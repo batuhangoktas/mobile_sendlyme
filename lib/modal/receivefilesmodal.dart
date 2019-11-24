@@ -3,8 +3,9 @@ class ReceiveFileModal {
   String fileId;
   String fileName;
    String status;
+   String fileSize;
 
-  ReceiveFileModal(this.orderNo, this.fileId, this.fileName, this.status);
+  ReceiveFileModal(this.orderNo, this.fileId, this.fileName, this.status,this.fileSize);
 
 
 }

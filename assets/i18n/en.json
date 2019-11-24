@@ -24,5 +24,6 @@
 	"AllReceive": "Download All",
 	"FinishSessionMessage": "Do you want to leave this session?",
 	"SendList": "Sent",
-	"ReceiveList": "Received"
+	"ReceiveList": "Received",
+	"Delete": "Delete"
 }

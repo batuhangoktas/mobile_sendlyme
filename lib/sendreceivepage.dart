@@ -79,7 +79,7 @@ class SendReceive extends State<SendReceiveApp> {
             bottom: TabBar(
               tabs: [
                 Tab(text: Translations.of(context).text('SendList'),),
-                Tab(text: Translations.of(context).text('ReceiveList'),),
+                ReceiveListTab()
               ],
             ),
             title: Text( Translations.of(context).text('SendReceive')),
@@ -202,6 +202,19 @@ color: new Color(0xFFBFE0F3),
       ),
     )
     );
+  }
+
+  ReceiveListTab()
+  {
+    int notDownloaded=0;
+    receiveFileList.forEach((file) {
+      if(file.status=="0")
+        notDownloaded++;
+    } );
+    if(notDownloaded>0)
+    return  Tab(text: Translations.of(context).text('ReceiveList')+"("+notDownloaded.toString()+")" ,);
+    else
+      return  Tab(text: Translations.of(context).text('ReceiveList'));
   }
 
   Future<bool> _onBackPressed() {
@@ -429,12 +442,14 @@ color: new Color(0xFFBFE0F3),
               String fileId = data['id'];
               String fileName = data['name'];
               String fileStatus = data['status'];
+              String fileSize = data['fileSize'];
               receiveFileList.add(new ReceiveFileModal(
-                  ++receiveCnt, fileId, fileName, fileStatus));
+                  ++receiveCnt, fileId, fileName, fileStatus, fileSize));
             });
 
             setState(() => this.receiveFileList = receiveFileList);
 
+              setState(ReceiveListTab());
               var notReceiveCnt = 0;
               for(ReceiveFileModal fileModal in this.receiveFileList)
               {
