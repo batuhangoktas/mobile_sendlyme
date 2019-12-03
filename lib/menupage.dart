@@ -61,7 +61,7 @@ class MenuPageApp extends State<MenuPage>
        height: 70.0,
       alignment: Alignment.center,
 margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
-      child: new Text("Sendly.me",style: TextStyle(color: Color(0xFF2A5094), fontSize: 50,fontWeight: FontWeight.bold, fontFamily: 'IceBerg'),),
+      child: new Text("Sendly.me",style: TextStyle(color: Color(0xFF2A5094), fontSize: 50,fontWeight: FontWeight.bold),),
      ),
         
        new Container(
@@ -159,7 +159,7 @@ margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
       margin: EdgeInsets.only(top: 10.0),
       height: 20.0,
       alignment: Alignment.center,
-      child: new Text( Translations.of(context).text('Agree'),style: TextStyle(color: Color(0xFF2A5094), fontSize: 15,fontWeight: FontWeight.bold, fontFamily: 'IceBerg'),),
+      child: new Text( Translations.of(context).text('Agree'),style: TextStyle(color: Color(0xFF2A5094), fontSize: 15,fontWeight: FontWeight.bold),),
     ),
     new Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -169,7 +169,7 @@ margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
           alignment: Alignment.center,
           child:
           new InkWell(
-            child: new Text(Translations.of(context).text('LegalInfo'),style: TextStyle(color: Color(0xFF2A5094),decoration: TextDecoration.underline, fontSize: 15,fontWeight: FontWeight.bold, fontFamily: 'IceBerg'),),
+            child: new Text(Translations.of(context).text('LegalInfo'),style: TextStyle(color: Color(0xFF2A5094),decoration: TextDecoration.underline, fontSize: 15,fontWeight: FontWeight.bold),),
             onTap: () => launch('https://sendly.me/#/legalinfo')
         ),
 
@@ -178,14 +178,14 @@ margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
         new Container(
           height: 20.0,
           alignment: Alignment.center,
-          child: new Text(Translations.of(context).text('And'),style: TextStyle(color: Color(0xFF2A5094), fontSize: 15,fontWeight: FontWeight.bold, fontFamily: 'IceBerg'),),
+          child: new Text(Translations.of(context).text('And'),style: TextStyle(color: Color(0xFF2A5094), fontSize: 15,fontWeight: FontWeight.bold),),
         ),
         new Container(
           height: 20.0,
           alignment: Alignment.center,
           child:
           new InkWell(
-            child: new Text(Translations.of(context).text('Privacy'),style: TextStyle(color: Color(0xFF2A5094),decoration: TextDecoration.underline, fontSize: 15,fontWeight: FontWeight.bold, fontFamily: 'IceBerg'),),
+            child: new Text(Translations.of(context).text('Privacy'),style: TextStyle(color: Color(0xFF2A5094),decoration: TextDecoration.underline, fontSize: 15,fontWeight: FontWeight.bold),),
               onTap: () => launch('https://sendly.me/#/privacy')
           )
         ),

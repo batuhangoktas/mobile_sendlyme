@@ -449,7 +449,11 @@ color: new Color(0xFFBFE0F3),
 
             setState(() => this.receiveFileList = receiveFileList);
 
+            try{
               setState(ReceiveListTab());
+            }
+            catch (e){
+            }
               var notReceiveCnt = 0;
               for(ReceiveFileModal fileModal in this.receiveFileList)
               {
